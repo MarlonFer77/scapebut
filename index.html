@@ -2,43 +2,49 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Desafio do Botão!</title>
+  <title>Missão Impossível</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
       margin: 0;
       padding: 0;
-      background-color: #111;
-      color: #fff;
-      font-family: sans-serif;
+      background-color: #000;
+      color: #0f0;
+      font-family: monospace;
       height: 100vh;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
     }
+
     h1 {
-      margin-bottom: 50px;
       text-align: center;
+      margin-bottom: 60px;
+      animation: pisca 1s infinite;
     }
+
+    @keyframes pisca {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
     #trollButton {
       position: absolute;
-      padding: 16px 32px;
-      font-size: 18px;
+      padding: 18px 36px;
+      font-size: 20px;
+      font-weight: bold;
       background-color: #ff4747;
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: top 0.3s ease, left 0.3s ease;
+      transition: top 0.2s ease, left 0.2s ease, background-color 0.2s;
     }
   </style>
 </head>
 <body>
-  <h1>Tente tocar no botão 😏</h1>
+  <h1>Toque o botão se for capaz 😈</h1>
   <button id="trollButton">Clique aqui!</button>
 
   <script>
@@ -53,16 +59,19 @@
       button.style.top = `${randomY}px`;
     }
 
-    // Evento para mouse
+    // Foge no mouse
     button.addEventListener('mouseover', moveButton);
 
-    // Evento para toque (celular/tablet)
-    button.addEventListener('touchstart', function(e) {
-      e.preventDefault(); // Impede o clique
+    // Foge no toque antes de clicar
+    button.addEventListener('touchstart', (e) => {
+      e.preventDefault();
       moveButton();
     });
 
-    // Caso o usuário consiga clicar
+    // Movimento constante (cada 1 segundo)
+    setInterval(moveButton, 1000);
+
+    // Parabéns se clicar
     button.addEventListener('click', () => {
       alert("リックしちゃったからには、もうデートの借りがあるよ");
     });
