@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Tente clicar 😏</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    h1 {
+      margin-bottom: 40px;
+    }
+
+    #trollButton {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: #ff4747;
+      color: white;
+      cursor: pointer;
+      position: absolute;
+      transition: top 0.3s, left 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <h1>Você consegue clicar no botão?</h1>
+  <button id="trollButton">Clique aqui!</button>
+
+  <script>
+    const button = document.getElementById('trollButton');
+
+    function moveButton() {
+      const maxX = window.innerWidth - button.offsetWidth;
+      const maxY = window.innerHeight - button.offsetHeight;
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+      button.style.left = `${randomX}px`;
+      button.style.top = `${randomY}px`;
+    }
+
+    button.addEventListener('mouseover', moveButton);
+
+    button.addEventListener('click', () => {
+      alert("クリックしちゃったからには、もうデートの借りがあるよ。");
+    });
+
+    // Inicializa o botão em posição aleatória
+    moveButton();
+  </script>
+</body>
+</html>
