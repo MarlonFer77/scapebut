@@ -2,40 +2,43 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Tente clicar 😏</title>
+  <title>Desafio do Botão!</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: Arial, sans-serif;
-      background-color: #111;
-      color: #fff;
-      text-align: center;
       margin: 0;
       padding: 0;
+      background-color: #111;
+      color: #fff;
+      font-family: sans-serif;
       height: 100vh;
       display: flex;
       flex-direction: column;
+      align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
-
     h1 {
-      margin-bottom: 40px;
+      margin-bottom: 50px;
+      text-align: center;
     }
-
     #trollButton {
-      padding: 15px 30px;
+      position: absolute;
+      padding: 16px 32px;
       font-size: 18px;
-      border: none;
-      border-radius: 8px;
       background-color: #ff4747;
       color: white;
+      border: none;
+      border-radius: 8px;
       cursor: pointer;
-      position: absolute;
-      transition: top 0.3s, left 0.3s;
+      transition: top 0.3s ease, left 0.3s ease;
     }
   </style>
 </head>
 <body>
-  <h1>Você consegue clicar no botão?</h1>
+  <h1>Tente tocar no botão 😏</h1>
   <button id="trollButton">Clique aqui!</button>
 
   <script>
@@ -50,13 +53,21 @@
       button.style.top = `${randomY}px`;
     }
 
+    // Evento para mouse
     button.addEventListener('mouseover', moveButton);
 
-    button.addEventListener('click', () => {
-      alert("クリックしちゃったからには、もうデートの借りがあるよ。");
+    // Evento para toque (celular/tablet)
+    button.addEventListener('touchstart', function(e) {
+      e.preventDefault(); // Impede o clique
+      moveButton();
     });
 
-    // Inicializa o botão em posição aleatória
+    // Caso o usuário consiga clicar
+    button.addEventListener('click', () => {
+      alert("リックしちゃったからには、もうデートの借りがあるよ");
+    });
+
+    // Inicializa
     moveButton();
   </script>
 </body>
